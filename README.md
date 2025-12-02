@@ -71,3 +71,87 @@ The raw review data should be placed in
 data/raw/reviews_raw.csv
 ```
 Expected columns include: review_id, review_text, rating, review_date, user_name, bank_code, bank_name, etc.
+
+
+**Database Schema**
+
+Database: bank_reviews
+Tables:
+
+banks
+Column	Type	Description
+bank_id	SERIAL	Unique bank identifier
+bank_name	TEXT	Name of the bank
+app_name	TEXT	Name of the mobile app
+reviews
+Column	Type	Description
+review_id	UUID	Unique identifier for the review
+review_text	TEXT	Text of the user review
+rating	INT	Rating given by the user (1–5)
+review_date	DATE	Date of the review
+user_name	TEXT	Name of the reviewer
+thumbs_up	INT	Number of thumbs up / likes
+reply_content	TEXT	Reply from the bank, if any
+bank_code	TEXT	Bank code / short identifier
+bank_name	TEXT	Name of the bank
+app_id	TEXT	App identifier
+source	TEXT	Source of review (Google Play / App Store)
+processed_text	TEXT	Cleaned / preprocessed review text
+sentiment_label	TEXT	Sentiment category (positive, neutral, negative)
+sentiment_score	FLOAT	Sentiment score (0–1)
+themes	TEXT	Identified themes / topics of the review
+Task 3 – Data Ingestion
+
+Goal: Insert processed review data into PostgreSQL.
+
+Script: src/insert_to_postgres.py
+
+CSV input: ./data/processed/reviews_with_sentiment_theme.csv
+
+Actions:
+
+Connect to PostgreSQL.
+
+Read CSV data.
+
+Insert data into the reviews table.
+
+Result: reviews table now contains ~1,966 rows.
+
+Sample Query:
+
+SELECT bank_id, COUNT(*) FROM reviews GROUP BY bank_id;
+
+**Task 4 – Insights & Recommendations**
+
+Goal: Analyze reviews and derive actionable insights for each bank app.
+
+Script: src/task4_insights.py
+
+Analysis includes:
+
+Average rating per bank
+
+Sentiment distribution (positive/neutral/negative)
+
+Top themes (drivers and pain points)
+
+
+Visualizations: Saved in ./output/task4_plots/
+Rating distribution per bank
+
+Sentiment counts per bank
+
+Top review themes
+
+Example Output (CBE Mobile):
+
+```
+Bank: Commercial Bank of Ethiopia
+Average Rating: 4.12
+Sentiment Counts: positive: 235, neutral: 133, negative: 32
+Top Themes: User Interface, Feature Requests, Transaction Performance
+Suggested Improvements: Improve user interface, Improve feature requests, Improve transaction performance
+
+```
+
