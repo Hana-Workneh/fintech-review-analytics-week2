@@ -75,32 +75,37 @@ Expected columns include: review_id, review_text, rating, review_date, user_name
 
 **Database Schema**
 
-Database: bank_reviews
-Tables:
 
-banks
-Column	Type	Description
-bank_id	SERIAL	Unique bank identifier
-bank_name	TEXT	Name of the bank
-app_name	TEXT	Name of the mobile app
-reviews
-Column	Type	Description
-review_id	UUID	Unique identifier for the review
-review_text	TEXT	Text of the user review
-rating	INT	Rating given by the user (1–5)
-review_date	DATE	Date of the review
-user_name	TEXT	Name of the reviewer
-thumbs_up	INT	Number of thumbs up / likes
-reply_content	TEXT	Reply from the bank, if any
-bank_code	TEXT	Bank code / short identifier
-bank_name	TEXT	Name of the bank
-app_id	TEXT	App identifier
-source	TEXT	Source of review (Google Play / App Store)
-processed_text	TEXT	Cleaned / preprocessed review text
-sentiment_label	TEXT	Sentiment category (positive, neutral, negative)
-sentiment_score	FLOAT	Sentiment score (0–1)
-themes	TEXT	Identified themes / topics of the review
-Task 3 – Data Ingestion
+### Database Tables
+
+#### banks
+| Column    | Type   | Description                |
+|-----------|--------|----------------------------|
+| bank_id   | SERIAL | Unique bank identifier     |
+| bank_name | TEXT   | Name of the bank           |
+| app_name  | TEXT   | Name of the mobile app     |
+
+#### reviews
+| Column           | Type   | Description                                           |
+|------------------|--------|-------------------------------------------------------|
+| review_id        | UUID   | Unique identifier for the review                     |
+| review_text      | TEXT   | Text of the user review                               |
+| rating           | INT    | Rating given by the user (1–5)                       |
+| review_date      | DATE   | Date of the review                                    |
+| user_name        | TEXT   | Name of the reviewer                                  |
+| thumbs_up        | INT    | Number of thumbs up / likes                           |
+| reply_content    | TEXT   | Reply from the bank, if any                           |
+| bank_code        | TEXT   | Bank code / short identifier                          |
+| bank_name        | TEXT   | Name of the bank                                      |
+| app_id           | TEXT   | App identifier                                        |
+| source           | TEXT   | Source of review (Google Play / App Store)           |
+| processed_text   | TEXT   | Cleaned / preprocessed review text                   |
+| sentiment_label  | TEXT   | Sentiment category (positive, neutral, negative)     |
+| sentiment_score  | FLOAT  | Sentiment score (0–1)                                 |
+| themes           | TEXT   | Identified themes / topics of the review            |
+
+
+**Task 3 – Data Ingestion**
 
 Goal: Insert processed review data into PostgreSQL.
 
